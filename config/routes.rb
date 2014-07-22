@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'welcome/index'
   
   resources :articles do
@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
+
+  devise_for :users
 
 end
