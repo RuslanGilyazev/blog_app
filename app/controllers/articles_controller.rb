@@ -1,14 +1,13 @@
 class ArticlesController < ApplicationController
-  
-  http_basic_authenticate_with name: "name", password: "pas", except: [:index, :show]     #Запрашивает логин и пас с которыми можно работать
-  
+  before_filter :authenticate_user!, only: [:new, :edit, :destroy]
+
   def new
     @article = Article.new                                                                #Создает новую таблицу
   end
   
   def create
     
-    @article = Article.new(article_params)                                                #Создает создает новую если
+    @article = current_user.articles.new(article_params)                                       #Создает создает новую если
     
     if @article.save
       redirect_to @article
