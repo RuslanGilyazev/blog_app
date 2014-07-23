@@ -1,17 +1,25 @@
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
- 
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
+<div class="comments">
+<table class="table table-bordered">
+	<tr>
+		<td class="bg-warning">
+		  <em><%= comment.commenter %></em>
+		</td>
+	</tr>
+    <tr>
+	  <td>
+  		<%= comment.body %>
+  	  </td>
+  	</tr>
 
-<p>
   <% if user_signed_in? && current_user.email==comment.commenter %>
+    <tr>
+	   <td class="destroy_comment">
     <%= link_to 'Destroy Comment', [comment.article, comment],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
+       </td>
+  	</tr>
   <% end %>
-</p>
+
+</table>
+</div>

@@ -1,13 +1,20 @@
-<%= form_for([@article, @article.comments.build]) do |f| %>
-  <p>
-    <%= f.label :commenter %><br>
-    <%= f.text_field :commenter  %>
-  </p>
-  <p>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<div class="comments">
+<% if user_signed_in? %>
+
+  <%= form_for([@article, @article.comments.build]) do |f| %>
+    <p>
+      <%= f.label :commenter %><br>
+      <input id="comment_commenter" name="comment[commenter]" class="form-control" type="text" placeholder="<%= current_user.email %>" value ="<%= current_user.email %>" readonly>
+    </p>
+    <p>
+      <%= f.label :body %><br>
+      <%= f.text_area :body, :class => "form-control" %>
+    </p>
+    <p class="sumbutcomment">
+      <%= f.submit "Add comment", :class => "btn btn-primary" %>
+    </p>
+  <% end %>
+<% else %>
+<p> You need sing in or sing up to add comment </p>
 <% end %>
+</div>
