@@ -1,33 +1,24 @@
 <h1>Blog App Kefir</h1>
-<table>
 <% @articles.each do |article| %>
-  <tr>
-    <td>
-      <h4><%= article.title %></h4>
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <% if article.user == nil %>
-          <em>Delete user</em>
-        <% else %>
-          <em><%= article.user.email %></em>
-        <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td><%= article.text %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Show', article_path(article) %>
-    <% if user_signed_in? %>
-      <%= link_to 'Edit', edit_article_path(article) %>
-      <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
+<p>
+  <h4><%= article.title %></h4>
+</p>
+<p>
+<% if article.user == nil %>
+  <em>Delete user</em>
+<% else %>
+  <em><%= article.user.email %></em>
 <% end %>
-</table>
-
+</p>
+<p>
+<%= article.text %></td>
+</p>
+<%= link_to 'Show', article_path(article) %>
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_article_path(article) %>
+  <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
+<% end %>
 </br>
 <% if user_signed_in? %>
  <%= link_to 'New Post', new_article_path %>
