@@ -12,12 +12,15 @@ Posted by
   <em>Delete user</em>
 <% else %>
   <em><%= article.user.email %></em>
-<% end %>,
-<%= link_to 'Comments ' + article.comments.count.to_s, article_path(article) %></td>,
+<% end %>
+in <%= article.time %>
 <%  if user_signed_in? && current_user==article.user %>
   <%= link_to 'Edit', edit_article_path(article) %>,
-  <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+  · <%= link_to article.comments.count.to_s + ' comments', article_path(article)%>
+  </br>
+  </br>
 <% end %>
 </br>
 <% if user_signed_in? %>
