@@ -1,7 +1,16 @@
+<h1>Blog App Kefir</h1>
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
 </p>
+
+<p>
+<% if @article.user == nil %>
+  <em>Delete user</em>
+<% else %>
+   <em><%= @article.user.email %></em>
+<% end %>
+<p/>
  
 <p>
   <strong>Text:</strong>

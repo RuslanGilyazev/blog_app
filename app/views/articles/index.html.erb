@@ -1,4 +1,4 @@
-<h1>Welcome to Blog App Kefir</h1>
+<h1>Blog App Kefir</h1>
 <table>
 <% @articles.each do |article| %>
   <tr>
@@ -8,7 +8,11 @@
   </tr>
   <tr>
     <td>
-        <%= article.user.email %>
+        <% if article.user == nil %>
+          <em>Delete user</em>
+        <% else %>
+          <em><%= article.user.email %></em>
+        <% end %>
     </td>
   </tr>
   <tr>
