@@ -1,23 +1,26 @@
 <h1>Blog App Kefir</h1>
 <% @articles.each do |article| %>
 <p>
-  <h4><%= article.title %></h4>
+  <h4><%= link_to article.title, article_path(article) %></h4>
 </p>
 <p>
+<%= article.text %></td>
+</p>
+<p>
+Posted by 
 <% if article.user == nil %>
   <em>Delete user</em>
 <% else %>
   <em><%= article.user.email %></em>
 <% end %>
-</p>
-<p>
-<%= article.text %></td>
-</p>
-<%= link_to 'Show', article_path(article) %>
+in <%= article.time %>
 <%  if user_signed_in? && current_user==article.user %>
-  <%= link_to 'Edit', edit_article_path(article) %>
-  <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <%= link_to 'Edit', edit_article_path(article) %>,
+  <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+  · <%= link_to article.comments.count.to_s + ' comments', article_path(article)%>
+  </br>
+  </br>
 <% end %>
 </br>
 <% if user_signed_in? %>

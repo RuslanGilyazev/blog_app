@@ -3,12 +3,14 @@ class ArticlesController < ApplicationController
   before_action :is_owner, only: [:edit,:update,:destroy]
 
   def new
-    @article = Article.new                                                                #Создает новую таблицу
+    @article = Article.new                                                               
   end
   
   def create
     
-    @article = current_user.articles.new(article_params)                                       #Создает создает новую если
+    @article = current_user.articles.new(article_params)
+    time = Time.new
+    @article.time = time.month.to_s + '.' + time.day.to_s + ' at ' + time.hour.to_s + ':' + time.day.to_s
     
     if @article.save
       redirect_to @article
@@ -18,7 +20,6 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-                                                        #Редактирует стороку с данным ID
   end
   
   def update
