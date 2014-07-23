@@ -1,7 +1,6 @@
 <h1>Blog App Kefir</h1>
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+  <h4><%= @article.title %></h4>
 </p>
 
 <p>
@@ -13,7 +12,6 @@
 <p/>
  
 <p>
-  <strong>Text:</strong>
   <%= @article.text %>
 </p>
 
@@ -23,5 +21,7 @@
 <h2>Add a comment:</h2>
 <%= render "comments/form" %>
  
-<%= link_to 'Back', articles_path %> 
-| <%= link_to 'Edit', edit_article_path(@article) %>
+<%= link_to 'Back', articles_path %>
+<% if user_signed_in? %>
+<%= link_to 'Edit', edit_article_path(@article) %>
+<% end %>
