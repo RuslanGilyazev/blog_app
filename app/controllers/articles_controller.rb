@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :is_owner, only: [:edit,:update,:destroy]
 
   def new
     @article = Article.new                                                                #Создает новую таблицу
@@ -17,12 +18,10 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-    @article = Article.find(params[:id])                                                    #Редактирует стороку с данным ID
+                                                        #Редактирует стороку с данным ID
   end
   
   def update
-    @article = Article.find(params[:id])        
- 
     if @article.update(article_params)
       redirect_to @article
     else
@@ -48,6 +47,13 @@ class ArticlesController < ApplicationController
   private
   def article_params
     params.require(:article).permit(:title, :text)
+  end
+
+  def is_owner
+    @article = Article.find(params[:id])
+    if (current_user!=@article.user)
+      redirect_to @article
+    end
   end
   
 end
