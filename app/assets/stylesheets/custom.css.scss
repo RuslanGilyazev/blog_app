@@ -1,6 +1,14 @@
 @import "bootstrap";
 
 /* universal */
+.logo {
+  margin: auto;
+  width: 100px;
+}
+
+.show_comments {
+  text-align: left;
+}
 
 .destroy_comment {
   text-align: right;
