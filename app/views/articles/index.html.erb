@@ -1,17 +1,24 @@
-<h1>Blog App Kefir</h1>
-<% @articles.each do |article| %>
+<h1>Search the Posts</h1>
+<%= form_tag articles_path, :method => 'get' do  %>
 <p>
-  <h4><%= link_to article.title, article_path(article) %></h4>
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Search", :name => nil %>
+<%= link_to 'Show all Posts', articles_path %></p>
+<% end %>
+
+<% @articles.reverse.each do |article| %>
+<p>
+    <h4><%= link_to article.title, article_path(article) %></h4>
 </p>
 <p>
-<%= article.text %></td>
+	<%= article.text %>
 </p>
 <p>
 Posted by 
 <% if article.user == nil %>
   <em>Delete user</em>
 <% else %>
-  <em><%= article.user.email %></em>
+  <em><%= link_to article.user.email, user_path(article.user.id)%></em>
 <% end %>
 in <%= article.time %>
 <%  if user_signed_in? && current_user==article.user %>

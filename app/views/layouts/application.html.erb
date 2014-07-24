@@ -12,15 +12,26 @@
     <div class="container">
       <div class="row">
          <div class=".col-md-8 .col-md-offset-3">
+         <div class = "logo" onclick = "runEffect()"><img src=" <%= image_url("KEFIR.png") %> " style="
+    width: 100px;" id="effect"></div>
           	<% if alert %>
           		<p class="alert alert-danger" role="alert"><%= alert %></p>
               <% end %>
               <% if notice %>
-          		<p class="alert alert-danger" role="alert"><%= alert %></p>
+          		<p class="alert alert-danger" role="alert"><%= notice %></p>
               <% end %>
             	<%= yield %>
           </div>
         </div>
     </div>
+<%= render 'layouts/footer' %>
+
+ <script>
+    function runEffect() {
+      $( "#effect" ).effect( "shake" );
+    };
+  </script>
+</head>
+<body>
 </body>
 </html>

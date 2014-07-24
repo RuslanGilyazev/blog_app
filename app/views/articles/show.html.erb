@@ -1,23 +1,22 @@
-<h1>Blog App Kefir</h1>
 <p>
   <h4><%= @article.title %></h4>
 </p>
-
-<p>
-<% if @article.user == nil %>
-  <em>Delete user</em>
-<% else %>
-   <em><%= @article.user.email %></em>
-<% end %>
-<p/>
  
 <p>
   <%= @article.text %>
 </p>
+Posted by 
+<% if @article.user == nil %>
+  <em>Delete user</em>
+<% else %>
+  <em><%= @article.user.email %></em>
+<% end %>
+in <%= @article.time %>
 <p>
 <%= link_to 'Back', articles_path %>
 <% if user_signed_in? && current_user==@article.user %>
 <%= link_to 'Edit', edit_article_path(@article) %>
+<%= link_to 'Destroy', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 </p>
 

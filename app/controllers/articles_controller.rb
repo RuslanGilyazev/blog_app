@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
     
     @article = current_user.articles.new(article_params)
     time = Time.new
-    @article.time = time.month.to_s + '.' + time.day.to_s + ' at ' + time.hour.to_s + ':' + time.day.to_s
+    @article.time = time.month.to_s + '.' + time.day.to_s + '.' + time.year.to_s  + ' at ' + time.hour.to_s + ':' + time.min.to_s
     
     if @article.save
       redirect_to @article
@@ -42,8 +42,11 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.all
+    @articles = Article.search(params[:search ])
+    #@articles = Article.all
   end
+  
+  
   
   private
   def article_params

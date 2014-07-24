@@ -1,6 +1,25 @@
 @import "bootstrap";
 
+
+
+.bs-docs-footer {
+  background-color: #FFF;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 50px;
+  color: #777;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
 /* universal */
+.logo {
+  margin: auto;
+  width: 100px;
+}
+
+.show_comments {
+  text-align: left;
+}
 
 .destroy_comment {
   text-align: right;

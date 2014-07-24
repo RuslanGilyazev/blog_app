@@ -1,0 +1,7 @@
+<h1><%= @user.email %></h1>
+<% if @user.articles.count>0 %>
+<h2>Last posts:</h2>
+<%= render @user.articles %>
+<% else %>
+<h2>There are no posts yet.</h2>
+<% end %>
