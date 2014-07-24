@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   get 'user/:id' => 'user#show', as: 'user'
   
+  resources :search
+
   resources :articles do
     resources :comments
   end
