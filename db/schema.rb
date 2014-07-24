@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140722084054) do
     t.string   "commenter"
     t.text     "body"
     t.integer  "article_id"
+    t.string   "time_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
