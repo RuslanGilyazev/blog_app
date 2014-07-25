@@ -42,7 +42,12 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.search(params[:search ])
+    @search = params[:search ]
+    if @search
+      @articles = Article.where(:title => @search)
+    else 
+      @articles = Article.all
+    end
     #@articles = Article.all
   end
   
