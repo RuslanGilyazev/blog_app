@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
   def index
     @search = params[:search ]
     if @search
-      @articles = Article.where(:title => @search)
+      @articles = Article.where('title LIKE ?',"#{@search}%")
     else 
       @articles = Article.all
     end
