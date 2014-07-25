@@ -42,8 +42,12 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.search(params[:search ])
-    #@articles = Article.all
+    @search=params[:search]
+    if @search
+      @articles = Article.where('title LIKE ?',"#{@search}%")
+    else
+      @articles = Article.all
+    end
   end
   
   
@@ -59,5 +63,5 @@ class ArticlesController < ApplicationController
       redirect_to @article
     end
   end
-  
+
 end
